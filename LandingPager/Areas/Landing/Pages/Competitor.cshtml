@@ -1,0 +1,8 @@
+﻿@page "/compare-to/{title?}"
+@model LandingPager.Landing.Pages.CompetitorModel
+
+@{
+    ViewData["Title"] = Model.CompetitorView.Competitor.Name;
+}
+
+@await Html.PartialAsync("_Competitor", Model.CompetitorView)

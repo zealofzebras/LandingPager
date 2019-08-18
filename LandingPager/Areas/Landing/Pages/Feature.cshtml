@@ -1,0 +1,8 @@
+﻿@page "/feature/{title?}"
+@model LandingPager.Landing.Pages.FeatureModel
+
+@{
+    ViewData["Title"] = Model.FeatureView.Feature.Name;
+}
+
+@await Html.PartialAsync("_Feature", Model.FeatureView)
