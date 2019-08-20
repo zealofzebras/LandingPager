@@ -17,13 +17,15 @@ namespace LandingPager.Repositories
         internal Models.BlogPost FileToBlogPost(string filename)
         {
             var html = System.IO.File.ReadAllText(filename);
+            var fileinfo = new System.IO.FileInfo(filename);            
             return new Models.BlogPost()
             {
                 Title = GetTitle(html),
-                Contents = html
+                Contents = html,
+                Tags = new List<string>(),
+                Published = fileinfo.CreationTimeUtc
             };
         }
-
 
         internal string GetTitle(string html)
         {
@@ -37,7 +39,5 @@ namespace LandingPager.Repositories
                 return "";
             }
         }
-
-
     }
 }

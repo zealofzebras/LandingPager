@@ -1,7 +1,22 @@
-﻿@page "{title?}" 
+﻿@page "{title?}"
 @model LandingPager.Blog.Pages.IndexModel
 
-<h1>test</h1>
+
+@{
+    if (Model.BlogPost != null)
+    {
+        ViewData["Title"] = Model.BlogPost.Title;
+        @await Html.PartialAsync("BlogPost", Model.BlogPost)
+    }
+    else
+    {
+        ViewData["Title"] = "Blog";
+        @await Html.PartialAsync("BlogIndex", Model.BlogPosts)
+    }
+}
 
 
-<p>@Model.RouteDataTextTemplateValue</p>
+
+
+@{
+}

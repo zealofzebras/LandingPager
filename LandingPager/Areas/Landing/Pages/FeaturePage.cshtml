@@ -1,0 +1,15 @@
+﻿@page "/feature/{title?}"
+@model LandingPager.Landing.Pages.FeatureModel
+
+@{
+    if (Model.FeatureView?.Feature != null)
+    {
+        ViewData["Title"] = Model.FeatureView.Feature.Name;
+        @await Html.PartialAsync("Feature", Model.FeatureView)
+    }
+    else
+    {
+        ViewData["Title"] = "Features";
+        @await Html.PartialAsync("Features", Model.Features)
+    }
+}

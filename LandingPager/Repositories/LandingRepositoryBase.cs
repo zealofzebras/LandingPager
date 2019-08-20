@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LandingPager.Models;
 
 namespace LandingPager.Repositories
 {
     public abstract class LandingRepositoryBase : ILandingRepository
     {
-        public abstract Models.LandingFeature GetFeature(string title);
-        public abstract Models.LandingCompetitor GetCompetitor(string title);
+        public abstract LandingFeature GetFeature(string title);
+        public abstract LandingCompetitor GetCompetitor(string title);
 
-        public abstract IEnumerable<Models.LandingFeature> GetAllFeatures();
+        public abstract IEnumerable<LandingFeature> GetAllFeatures();
+        public abstract IEnumerable<LandingCompetitor> GetAllCompetitors();
 
         public virtual Models.ViewModels.LandingCompetitorViewModel GetCompetitorViewModel(string title)
         {
@@ -28,5 +30,6 @@ namespace LandingPager.Repositories
                 Feature = GetFeature(title)
             };
         }
+
     }
 }

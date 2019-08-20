@@ -17,7 +17,12 @@ namespace LandingPager.Repositories
 
         public void Add(BlogPost blogPost)
         {
-            blogPosts.Add(blogPost.Title, blogPost);
+            blogPosts.Add(blogPost.Title.ToLowerInvariant(), blogPost);
+        }
+
+        public IEnumerable<BlogPost> GetAllBlogPosts()
+        {
+            return blogPosts.Values;
         }
 
         public BlogPost GetBlogPost(string title)
@@ -25,7 +30,7 @@ namespace LandingPager.Repositories
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("message", nameof(title));
 
-            return blogPosts[title];
+            return blogPosts[title.ToLowerInvariant()];
         }
 
         public IEnumerator<BlogPost> GetEnumerator() => blogPosts.Values.GetEnumerator();

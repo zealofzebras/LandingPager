@@ -8,6 +8,7 @@ namespace LandingPager.Models
     {
         public string Title { get; set; }
         public string Contents { get; set; }
-
+        public IEnumerable<string> Tags { get; set; }
+        public DateTime? Published { get; set; }
     }
 }

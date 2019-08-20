@@ -15,7 +15,6 @@ namespace LandingPager.Repositories
         /// <param name="competitorsFile">Json file with list of competitors</param>
         public LandingFileRepository(string featuresFile, string competitorsFile) : base()
         {
-
             using (var file = File.OpenText(featuresFile))
             {
                 var serializer = new JsonSerializer();
@@ -24,7 +23,6 @@ namespace LandingPager.Repositories
                     Add(feature);
             }
 
-
             using (var file = File.OpenText(competitorsFile))
             {
                 var serializer = new JsonSerializer();
@@ -32,12 +30,6 @@ namespace LandingPager.Repositories
                 foreach (var competitor in competitors)
                     Add(competitor);
             }
-
-
-           // var blogItems = Directory.GetFiles(blogFolder, "*.html", SearchOption.TopDirectoryOnly);
-            
-
-
         }
     }
 }

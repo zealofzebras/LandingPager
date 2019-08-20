@@ -14,7 +14,9 @@ namespace LandingPager.Landing.Pages
 
         public Models.ViewModels.LandingCompetitorViewModel CompetitorView { get; private set; }
 
-        public CompetitorModel(LandingPager.Repositories.ILandingRepository landingRepository)
+        public IEnumerable<Models.LandingCompetitor> Competitors { get; private set; }
+
+        public CompetitorModel(ILandingRepository landingRepository)
         {
             repository = landingRepository;
         }
@@ -24,6 +26,9 @@ namespace LandingPager.Landing.Pages
             if (RouteData.Values["title"] != null)
             {
                 CompetitorView = repository.GetCompetitorViewModel(RouteData.Values["title"].ToString());
+            } else
+            {
+                Competitors = repository.GetAllCompetitors();
             }
 
         }

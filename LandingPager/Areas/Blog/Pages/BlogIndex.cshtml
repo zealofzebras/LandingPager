@@ -1,0 +1,9 @@
+﻿@model IEnumerable<LandingPager.Models.BlogPost>
+
+
+<ul>
+    @foreach (var blogPost in Model)
+    {
+        <li><a asp-area="Blog" asp-page="Index" asp-route-title="@blogPost.Title">@blogPost.Title</a></li>
+    }
+</ul>

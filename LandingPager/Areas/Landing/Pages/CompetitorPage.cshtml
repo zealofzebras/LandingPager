@@ -1,0 +1,15 @@
+﻿@page "/compare-to/{title?}"
+@model LandingPager.Landing.Pages.CompetitorModel
+
+@{
+    if (Model.CompetitorView?.Competitor != null)
+    {
+        ViewData["Title"] = Model.CompetitorView.Competitor.Name;
+        @await Html.PartialAsync("Competitor", Model.CompetitorView)
+    }
+    else
+    {
+        ViewData["Title"] = "Competitors";
+        @await Html.PartialAsync("Competitors", Model.Competitors)
+    }
+}

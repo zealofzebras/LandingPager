@@ -23,16 +23,19 @@ namespace LandingPager.Repositories
 
         public void SaveToCompetitorsJsonFile(string filename) => System.IO.File.WriteAllText(filename, JsonConvert.SerializeObject(competitors.Values, Formatting.Indented));
 
-        public void Add(LandingFeature feature) => features.Add(feature.Name, feature);
+        public void Add(LandingFeature feature) => features.Add(feature.Name.ToLowerInvariant(), feature);
 
-        public void Add(LandingCompetitor competitor) => competitors.Add(competitor.Name, competitor);
+        public void Add(LandingCompetitor competitor) => competitors.Add(competitor.Name.ToLowerInvariant(), competitor);
 
         public override IEnumerable<LandingFeature> GetAllFeatures() => features.Values;
 
-        public override LandingCompetitor GetCompetitor(string title) => competitors[title];
+        public override LandingCompetitor GetCompetitor(string title) => competitors[title.ToLowerInvariant()];
 
-        public override LandingFeature GetFeature(string title) => features[title];
+        public override LandingFeature GetFeature(string title) => features[title.ToLowerInvariant()];
 
         IEnumerator IEnumerable.GetEnumerator() => competitors.Cast<object>().Union(features.Cast<object>()).GetEnumerator();
+
+        public override IEnumerable<LandingCompetitor> GetAllCompetitors() => competitors.Values;
+
     }
 }
