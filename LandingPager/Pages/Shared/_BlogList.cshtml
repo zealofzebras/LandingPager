@@ -1,0 +1,15 @@
+﻿@inject LandingPager.Repositories.IBlogRepository blogRepository
+
+@{
+    var blogPosts = blogRepository.GetAllBlogPosts();
+}
+
+@if (blogPosts.Any())
+{
+    <ul>
+        @foreach (var blogPost in blogRepository.GetAllBlogPosts())
+        {
+            <li><a asp-area="Blog" asp-page="Index" asp-route-title="@blogPost.Title">@blogPost.Title</a></li>
+        }
+    </ul>
+}
