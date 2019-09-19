@@ -8,24 +8,32 @@ namespace LandingPager.Repositories
 {
     public class BlogMemoryRepository : IBlogRepository, IEnumerable<BlogPost>
     {
-        private readonly Dictionary<string, BlogPost> blogPosts;
+        internal readonly Dictionary<string, BlogPost> blogPosts;
+
+        /// <summary>
+        /// This action is fired just before the blogpost item is added to the collection. This is usefull if you want to use the standard respositories but also want to modify the html.
+        /// I.e. if you want to modify all outgoing urls or change the location of image tags. 
+        /// </summary>
+        public Action<BlogPost> PageOptimizer;
 
         public BlogMemoryRepository()
         {
             blogPosts = new Dictionary<string, BlogPost>();
         }
 
-        public void Add(BlogPost blogPost)
+        public virtual void Add(BlogPost blogPost)
         {
+            PageOptimizer?.Invoke(blogPost);
+
             blogPosts.Add(blogPost.Title.ToLowerInvariant(), blogPost);
         }
 
-        public IEnumerable<BlogPost> GetAllBlogPosts()
+        public virtual IEnumerable<BlogPost> GetAllBlogPosts()
         {
             return blogPosts.Values;
         }
 
-        public BlogPost GetBlogPost(string title)
+        public virtual BlogPost GetBlogPost(string title)
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("message", nameof(title));
@@ -33,7 +41,7 @@ namespace LandingPager.Repositories
             return blogPosts[title.ToLowerInvariant()];
         }
 
-        public IEnumerator<BlogPost> GetEnumerator() => blogPosts.Values.GetEnumerator();
+        public virtual IEnumerator<BlogPost> GetEnumerator() => blogPosts.Values.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => blogPosts.Values.GetEnumerator();
     }

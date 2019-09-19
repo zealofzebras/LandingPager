@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,15 @@ namespace LandingPager.Repositories
 {
     public class BlogFileRepository : BlogMemoryRepository
     {
-        public BlogFileRepository(string blogFolder) : base()
+
+        private readonly string blogFolder;
+
+        public BlogFileRepository(IOptionsMonitor<BlogFileRepositoryOptions> optionsMonitor) : base()
+        {
+            blogFolder = optionsMonitor.CurrentValue.Folder;
+        }
+
+        internal void Init()
         {
             foreach (var file in System.IO.Directory.GetFiles(blogFolder, "*.html"))
             {
