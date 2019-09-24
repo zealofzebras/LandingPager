@@ -36,7 +36,7 @@ namespace LandingPager.Extensions
             if (string.IsNullOrWhiteSpace(competitor?.Name))
                 throw new ArgumentNullException(nameof(competitor));
 
-            return linkGenerator.GetPathByPage("/Competitor", null, values: new
+            return linkGenerator.GetPathByPage("/CompetitorPage", null, values: new
             {
                 area = "landing",
                 title = competitor.Name.ToLowerInvariant(),
