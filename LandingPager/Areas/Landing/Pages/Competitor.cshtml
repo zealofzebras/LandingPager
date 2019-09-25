@@ -1,10 +1,10 @@
 ﻿@model LandingPager.Models.ViewModels.LandingCompetitorViewModel
 
 
-<h1>How about @Model.Competitor.Name?</h1>
+<h1>How about @Model.Competitor.Title?</h1>
 
 <p>
-    @Model.Competitor.Description
+    @Model.Competitor.Contents
 </p>
 
 <section class="features">
@@ -13,7 +13,7 @@
         <h4>Feature comparison (from RCL)</h4>
         <div class="row">
             <div class="col-md-4">
-                <h6>@Model.Competitor.Name pros</h6>
+                <h6>@Model.Competitor.Title pros</h6>
                 <ul>
                     @foreach (var pro in Model.Competitor.Features)
                     {
@@ -22,7 +22,7 @@
                 </ul>
             </div>
             <div class="col-md-4">
-                <h6>@Model.Competitor.Name cons</h6>
+                <h6>@Model.Competitor.Title cons</h6>
                 <ul>
                     @foreach (var con in Model.Competitor.Cons)
                     {
@@ -35,7 +35,7 @@
                 <ul>
                     @foreach (var feature in Model.Features)
                     {
-                        <li><a asp-area="Landing" asp-page="/FeaturePage" asp-route-title="@feature.Name">@feature.Name</a></li>
+                        <li><a asp-area="Landing" asp-page="/FeaturePage" asp-route-title="@feature.Title">@feature.Title</a></li>
                     }
                 </ul>
             </div>

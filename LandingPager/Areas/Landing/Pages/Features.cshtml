@@ -9,7 +9,7 @@
                 <ul>
                     @foreach (var feature in Model)
                     {
-                        <li><a asp-area="Landing" asp-page="/FeaturePage" asp-route-title="@feature.Name">@feature.Name</a></li>
+                        <li><a asp-area="Landing" asp-page="/FeaturePage" asp-route-title="@feature.Title">@feature.Title</a></li>
                     }
                 </ul>
             </div>

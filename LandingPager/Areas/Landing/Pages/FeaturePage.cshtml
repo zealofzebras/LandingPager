@@ -4,7 +4,7 @@
 @{
     if (Model.FeatureView?.Feature != null)
     {
-        ViewData["Title"] = Model.FeatureView.Feature.Name;
+        ViewData["Title"] = Model.FeatureView.Feature.Title;
         @await Html.PartialAsync("Feature", Model.FeatureView)
     }
     else

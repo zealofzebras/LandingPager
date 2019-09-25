@@ -9,7 +9,7 @@
                 <ul>
                     @foreach (var competitor in Model)
                     {
-                        <li><a asp-area="Landing" asp-page="/CompetitorPage" asp-route-title="@competitor.Name">@competitor.Name</a></li>
+                        <li><a asp-area="Landing" asp-page="/CompetitorPage" asp-route-title="@competitor.Title">@competitor.Title</a></li>
                     }
                 </ul>
             </div>

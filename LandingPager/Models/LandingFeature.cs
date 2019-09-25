@@ -1,10 +1,13 @@
-﻿namespace LandingPager.Models
+﻿using System.Collections.Generic;
+
+namespace LandingPager.Models
 {
-    public class LandingFeature
+    public class LandingFeature : ILandingItem
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Title { get; set; }
+        public string Contents { get; set; }
         public string Image { get; set; }
+        public IEnumerable<string> Keywords { get; set; }
     }
 
 }

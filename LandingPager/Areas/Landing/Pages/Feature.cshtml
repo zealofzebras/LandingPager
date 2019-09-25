@@ -1,8 +1,8 @@
 ﻿@model LandingPager.Models.ViewModels.LandingFeatureViewModel
 
-<h2>@Model.Feature.Name</h2>
+<h2>@Model.Feature.Title</h2>
 <p>
-    @Model.Feature.Description
+    @Model.Feature.Contents
 </p>
 
 <section class="features">
@@ -17,7 +17,7 @@
                     {
                         if (feature != Model.Feature)
                         {
-                            <li><a asp-area="Landing" asp-page="/FeaturePage" asp-route-title="@feature.Name">@feature.Name</a></li>
+                            <li><a asp-area="Landing" asp-page="/FeaturePage" asp-route-title="@feature.Title">@feature.Title</a></li>
                         }
                     }
                 </ul>

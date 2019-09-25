@@ -4,7 +4,7 @@
 @{
     if (Model.CompetitorView?.Competitor != null)
     {
-        ViewData["Title"] = Model.CompetitorView.Competitor.Name;
+        ViewData["Title"] = Model.CompetitorView.Competitor.Title;
         @await Html.PartialAsync("Competitor", Model.CompetitorView)
     }
     else

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,11 +12,9 @@ namespace LandingPager.Repositories
         /// <summary>
         /// Simple repository based on local files.
         /// </summary>
-        /// <param name="featuresFile">Json file with the current site features</param>
-        /// <param name="competitorsFile">Json file with list of competitors</param>
-        public LandingFileRepository(string featuresFile, string competitorsFile) : base()
+        public LandingFileRepository(IOptionsMonitor<LandingFileRepositoryOptions> optionsMonitor, IKeywordExtractor keywordExtractor) : base(keywordExtractor)
         {
-            using (var file = File.OpenText(featuresFile))
+            using (var file = File.OpenText(optionsMonitor.CurrentValue.FeaturesFile))
             {
                 var serializer = new JsonSerializer();
                 var features = (List<Models.LandingFeature>)serializer.Deserialize(file, typeof(List<Models.LandingFeature>));
@@ -23,7 +22,7 @@ namespace LandingPager.Repositories
                     Add(feature);
             }
 
-            using (var file = File.OpenText(competitorsFile))
+            using (var file = File.OpenText(optionsMonitor.CurrentValue.CompetitorsFile))
             {
                 var serializer = new JsonSerializer();
                 var competitors = (List<Models.LandingCompetitor>)serializer.Deserialize(file, typeof(List<Models.LandingCompetitor>));

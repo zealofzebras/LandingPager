@@ -21,25 +21,25 @@ namespace LandingPager.Extensions
 
         public static string GetFeatureRouteUrl(this LinkGenerator linkGenerator, Models.LandingFeature feature)
         {
-            if (string.IsNullOrWhiteSpace(feature?.Name))
+            if (string.IsNullOrWhiteSpace(feature?.Title))
                 throw new ArgumentNullException(nameof(feature));
 
             return linkGenerator.GetPathByPage("/FeaturePage", null, values: new
             {
                 area = "landing",
-                title = feature.Name.ToLowerInvariant(),
+                title = feature.Title.ToLowerInvariant(),
             });
         }
 
         public static string GetCompetitorRouteUrl(this LinkGenerator linkGenerator, Models.LandingCompetitor competitor)
         {
-            if (string.IsNullOrWhiteSpace(competitor?.Name))
+            if (string.IsNullOrWhiteSpace(competitor?.Title))
                 throw new ArgumentNullException(nameof(competitor));
 
             return linkGenerator.GetPathByPage("/CompetitorPage", null, values: new
             {
                 area = "landing",
-                title = competitor.Name.ToLowerInvariant(),
+                title = competitor.Title.ToLowerInvariant(),
             });
         }
     }

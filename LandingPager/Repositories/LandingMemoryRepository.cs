@@ -12,20 +12,30 @@ namespace LandingPager.Repositories
     {
         private readonly Dictionary<string, LandingFeature> features;
         private readonly Dictionary<string, LandingCompetitor> competitors;
+        private readonly IKeywordExtractor keywordExtractor;
 
-        public LandingMemoryRepository()
+        public LandingMemoryRepository(IKeywordExtractor keywordExtractor)
         {
             features = new Dictionary<string, LandingFeature>();
             competitors = new Dictionary<string, LandingCompetitor>();
+            this.keywordExtractor = keywordExtractor;
         }
 
         public void SaveToFeaturesJsonFile(string filename) => System.IO.File.WriteAllText(filename, JsonConvert.SerializeObject(features.Values, Formatting.Indented));
 
         public void SaveToCompetitorsJsonFile(string filename) => System.IO.File.WriteAllText(filename, JsonConvert.SerializeObject(competitors.Values, Formatting.Indented));
 
-        public void Add(LandingFeature feature) => features.Add(feature.Name.ToLowerInvariant(), feature);
+        public void Add(LandingFeature feature)
+        {
+            feature.Keywords = keywordExtractor.ExtractKeywords(feature);
+            features.Add(feature.Title.ToLowerInvariant(), feature);
+        }
 
-        public void Add(LandingCompetitor competitor) => competitors.Add(competitor.Name.ToLowerInvariant(), competitor);
+        public void Add(LandingCompetitor competitor)
+        {
+            competitor.Keywords = keywordExtractor.ExtractKeywords(competitor);
+            competitors.Add(competitor.Title.ToLowerInvariant(), competitor);
+        }
 
         public override IEnumerable<LandingFeature> GetAllFeatures() => features.Values;
 

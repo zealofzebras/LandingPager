@@ -10,7 +10,7 @@ namespace LandingPager.Repositories
 
         private readonly string blogFolder;
 
-        public BlogFileRepository(IOptionsMonitor<BlogFileRepositoryOptions> optionsMonitor) : base()
+        public BlogFileRepository(IOptionsMonitor<BlogFileRepositoryOptions> optionsMonitor, IKeywordExtractor keywordExtractor) : base(keywordExtractor)
         {
             blogFolder = optionsMonitor.CurrentValue.Folder;
         }
@@ -31,7 +31,7 @@ namespace LandingPager.Repositories
             {
                 Title = GetTitle(html),
                 Contents = html,
-                Tags = new List<string>(),
+                Keywords = new List<string>(),
                 Published = fileinfo.CreationTimeUtc
             };
         }

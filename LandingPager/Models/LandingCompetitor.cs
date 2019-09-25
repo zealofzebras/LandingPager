@@ -2,11 +2,12 @@
 
 namespace LandingPager.Models
 {
-    public class LandingCompetitor
+    public class LandingCompetitor : ILandingItem
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Title { get; set; }
+        public string Contents { get; set; }
         public List<string> Features { get; set; }
         public List<string> Cons { get; set; }
+        public IEnumerable<string> Keywords { get; set; }
     }
 }
