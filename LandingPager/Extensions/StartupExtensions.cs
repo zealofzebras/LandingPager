@@ -12,7 +12,7 @@ namespace LandingPager.Extensions
     {
         public static IServiceCollection AddLandingPager(this IServiceCollection services)
         {
-            return services.AddSingleton<KeywordExtractor>();
+            return services.AddSingleton<IKeywordExtractor, KeywordExtractor>();
         }
 
 
@@ -22,6 +22,18 @@ namespace LandingPager.Extensions
 
         }
 
+
+        public static IServiceCollection AddLandingPagerWithSpecificLandingRepository<TLandingFileRepository>(this IServiceCollection services, Action<LandingFileRepositoryOptions> landingFileOptions, Action<BlogFileRepositoryOptions> blogFileOptions) where TLandingFileRepository : class, ILandingRepository
+        {
+            return AddLandingPager<TLandingFileRepository, BlogFileRepository>(services, landingFileOptions, blogFileOptions);
+
+        }
+
+        public static IServiceCollection AddLandingPagerWithSpecificBlogRepository<TBlogFileRepository>(this IServiceCollection services, Action<LandingFileRepositoryOptions> landingFileOptions, Action<BlogFileRepositoryOptions> blogFileOptions) where TBlogFileRepository : class, IBlogRepository
+        {
+            return AddLandingPager<LandingFileRepository, TBlogFileRepository>(services, landingFileOptions, blogFileOptions);
+
+        }
 
         public static IServiceCollection AddLandingPager<TLandingFileRepository, TBlogFileRepository>(this IServiceCollection services, Action<LandingFileRepositoryOptions> landingFileOptions, Action<BlogFileRepositoryOptions> blogFileOptions) where TLandingFileRepository : class, ILandingRepository where TBlogFileRepository : class, IBlogRepository
         {
