@@ -4,7 +4,7 @@ namespace LandingPager
 {
     public class KeywordExtractorOptions
     {
-        public IEnumerable<string> StopWords { get; internal set; }
-        public int Limit { get; internal set; }
+        public IEnumerable<string> StopWords { get; set; }
+        public int Limit { get; set; }
     }
 }

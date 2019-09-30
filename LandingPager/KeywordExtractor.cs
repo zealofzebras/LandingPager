@@ -11,7 +11,7 @@ namespace LandingPager
 
         private readonly IOptionsMonitor<KeywordExtractorOptions> options;
 
-        public KeywordExtractor(IOptionsMonitor<KeywordExtractorOptions>  options)
+        public KeywordExtractor(IOptionsMonitor<KeywordExtractorOptions> options)
         {
             this.options = options;
         }
@@ -26,6 +26,12 @@ namespace LandingPager
 
         public IEnumerable<string> ExtractKeywords(string contents)
         {
+            if (options.CurrentValue.StopWords == null || !options.CurrentValue.StopWords.Any())
+                return null;
+
+            if (string.IsNullOrWhiteSpace(contents))
+                return null;
+
             var stopWords = new HashSet<string>(options.CurrentValue.StopWords, StringComparer.OrdinalIgnoreCase);
 
             var matches = Regex.Matches(contents, @"\w([:']?\w)*", RegexOptions.IgnoreCase);
