@@ -65,11 +65,11 @@ namespace LandingPager.Extensions
 
         public static PageConventionCollection SetBlogPath(this PageConventionCollection conventions, string blogPostName, string blogIndexName)
         {
-            if (blogPostName.ToLower() != "blog")
-                conventions.AddAreaPageRoute("Blog", "/Index", $"{blogPostName}/{{title}}");
-
             if (blogIndexName.ToLower() != "blog")
                 conventions.AddAreaPageRoute("Blog", "/Index", blogIndexName);
+
+            if (blogPostName.ToLower() != "blog")
+                conventions.AddAreaPageRoute("Blog", "/Index", $"{blogPostName}/{{title}}");
 
             return conventions;
         }
@@ -82,11 +82,11 @@ namespace LandingPager.Extensions
 
         public static PageConventionCollection SetFeaturesPath(this PageConventionCollection conventions, string featureItemName, string featureIndexName)
         {
-            if (featureItemName.ToLower() != "feature")
-                conventions.AddAreaPageRoute("Landing", "/FeaturePage", $"{featureItemName}/{{title}}");
-
             if (featureIndexName.ToLower() != "feature")
                 conventions.AddAreaPageRoute("Landing", "/FeaturePage", featureIndexName);
+
+            if (featureItemName.ToLower() != "feature")
+                conventions.AddAreaPageRoute("Landing", "/FeaturePage", $"{featureItemName}/{{title}}");
 
             return conventions;
         }
@@ -98,11 +98,11 @@ namespace LandingPager.Extensions
 
         public static PageConventionCollection SetCompetitorsPath(this PageConventionCollection conventions, string competitorItemName, string competitorIndexName)
         {
-            if (competitorItemName.ToLower() != "compare-to")
-                conventions.AddAreaPageRoute("Landing", "/CompetitorPage", $"{competitorItemName}/{{title}}");
-
             if (competitorIndexName.ToLower() != "compare-to")
                 conventions.AddAreaPageRoute("Landing", "/CompetitorPage", competitorIndexName);
+
+            if (competitorItemName.ToLower() != "compare-to")
+                conventions.AddAreaPageRoute("Landing", "/CompetitorPage", $"{competitorItemName}/{{title}}");
 
             return conventions;
         }
