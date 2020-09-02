@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <PackageId>Sustainable.Web.LandingPager</PackageId>
     <Company>zeal aps</Company>
     <Product>Automatic Landing Pages for ASP.net core</Product>
@@ -11,10 +12,11 @@
     <RepositoryUrl>https://github.com/zealofzebras/LandingPager</RepositoryUrl>
     <Description>Using different set of repositories this package can generate a series of landing pages for you, either based on competitors, features and/or blog posts.</Description>
     <PackageTags>asp.net, core, mvc, landing, pages</PackageTags>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
+    <PackageReleaseNotes>Updated for AspNet Core 3.1</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 </Project>

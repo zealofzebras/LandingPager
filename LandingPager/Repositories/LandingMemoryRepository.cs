@@ -1,10 +1,8 @@
-﻿using System;
+﻿using LandingPager.Models;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using LandingPager.Models;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace LandingPager.Repositories
 {
@@ -13,6 +11,7 @@ namespace LandingPager.Repositories
         private readonly Dictionary<string, LandingFeature> features;
         private readonly Dictionary<string, LandingCompetitor> competitors;
         private readonly IKeywordExtractor keywordExtractor;
+        private readonly JsonSerializerOptions indendedJsonOptions = new JsonSerializerOptions() { WriteIndented = true };
 
         public LandingMemoryRepository(IKeywordExtractor keywordExtractor)
         {
@@ -21,9 +20,9 @@ namespace LandingPager.Repositories
             this.keywordExtractor = keywordExtractor;
         }
 
-        public void SaveToFeaturesJsonFile(string filename) => System.IO.File.WriteAllText(filename, JsonConvert.SerializeObject(features.Values, Formatting.Indented));
+        public void SaveToFeaturesJsonFile(string filename) => System.IO.File.WriteAllText(filename, JsonSerializer.Serialize(features.Values, indendedJsonOptions));
 
-        public void SaveToCompetitorsJsonFile(string filename) => System.IO.File.WriteAllText(filename, JsonConvert.SerializeObject(competitors.Values, Formatting.Indented));
+        public void SaveToCompetitorsJsonFile(string filename) => System.IO.File.WriteAllText(filename, JsonSerializer.Serialize(competitors.Values, indendedJsonOptions));
 
         public void Add(LandingFeature feature)
         {
